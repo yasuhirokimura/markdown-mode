@@ -1,4 +1,5 @@
 EMACS=emacs
+INSTALL=install -m 644 -p
 
 PACKAGE=markdown-mode
 
@@ -38,3 +39,6 @@ dist:
 
 update: $(COMPILED)
 	cp -a $(SOURCE) $(COMPILED) $(HOME)/.emacs.d/site-lisp
+
+install: $(COMPILED)
+	${INSTALL} *.el* $$(${EMACS} -Q --batch --eval "(princ (expand-file-name \"../../site-lisp\" data-directory))")
